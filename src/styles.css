@@ -1,0 +1,33 @@
+:root{--accent:#0ea5a4}
+body{font-family:Inter,ui-sans-serif,system-ui,Arial,Helvetica,sans-serif;margin:0;background:#f7fafc;color:#0f172a}
+.header{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:#fff;border-bottom:1px solid #e6e6e6}
+.brand{font-weight:700;text-decoration:none;color:var(--accent)}
+.container{max-width:1100px;margin:20px auto;padding:12px}
+.page-header{display:flex;justify-content:space-between;align-items:center}
+.controls{display:flex;gap:12px;margin:12px 0}
+.search{padding:8px;border:1px solid #ddd;border-radius:6px;width:320px}
+.card{background:#fff;padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(2,6,23,0.08);text-align:center}
+.center-screen{min-height:70vh;display:flex;align-items:center;justify-content:center}
+.btn{background:var(--accent);color:#fff;padding:8px 12px;border-radius:6px;border:none;cursor:pointer}
+.btn.small{padding:6px 8px;margin-left:6px}
+.btn.danger{background:#ef4444}
+.muted{color:#64748b;font-size:13px}
+.padded{padding:16px}
+.error{color:#b91c1c}
+.movie-card{display:flex;gap:12px;padding:10px;background:#fff;border-radius:8px;align-items:center;margin:6px}
+.movie-card img{width:92px;height:128px;object-fit:cover;border-radius:6px}
+.movie-info h3{margin:0}
+.overview{margin-top:6px;color:#475569}
+.list-wrapper{background:transparent}
+.row{padding:6px}
+.collections-panel { margin: 12px 0 24px 0; }
+.collections-grid { display:flex; gap:10px; flex-wrap:wrap; }
+.collection-card {
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  width:140px; padding:8px; border-radius:8px; border:1px solid #e6eef0; background:#fff;
+  text-align:center; cursor:pointer;
+}
+.collection-card img { width:100px; height:150px; object-fit:cover; border-radius:6px; }
+.collection-card .placeholder { width:100px; height:150px; display:flex; align-items:center; justify-content:center; background:#f3f4f6; color:#64748b; border-radius:6px; }
+.collection-card .collection-name { font-size:13px; font-weight:600; color:#0f172a; }
+.collection-card.selected { box-shadow:0 6px 20px rgba(2,6,23,0.06); border-color: #cfe7e6; transform: translateY(-2px); }
