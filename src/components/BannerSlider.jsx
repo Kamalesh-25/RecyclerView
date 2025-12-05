@@ -17,7 +17,6 @@ export default function BannerSlider({ onSelect }) {
     load();
   }, []);
 
-  // AUTO SLIDE (NO MOVIE LIST CHANGE)
 useEffect(() => {
   if (!items.length) return;
 
@@ -51,8 +50,8 @@ useEffect(() => {
   key={c.id}
   className={i === index ? "dot active" : "dot"}
   onClick={() => {
-    setIndex(i);             // change the banner visually
-    onSelect && onSelect(items[i].id); // <-- USER-initiated update to movie list
+    setIndex(i);             
+    onSelect && onSelect(items[i].id); 
   }}
 />
         ))}
