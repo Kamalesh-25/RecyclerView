@@ -1,40 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { Routes, Route, Navigate, Link, useNavigate } from 'react-router-dom'
-import LoginPage from './pages/LoginPage'
-import MoviesPage from './pages/MoviesPage'
-import { isAuthenticated, logout } from './auth/auth'
+import React, { useState, useEffect } from "react";
+import MoviesPage from "./pages/MoviesPage";
+import Header from "./components/Header";
+import "./styles.css";
 
 export default function App() {
-  const [authed, setAuthed] = useState(isAuthenticated())
-  const navigate = useNavigate()
+  const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
-    setAuthed(isAuthenticated())
-  }, [])
-
-  const handleLogout = () => {
-    logout()
-    setAuthed(false)
-    navigate('/login')
-  }
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   return (
-    <div>
-      <header className="header">
-        <Link to="/" className="brand">TMDB Collections</Link>
-        <nav>
-          {authed ? (
-            <button className="btn small danger" onClick={handleLogout}>Logout</button>
-          ) : (
-            <Link to="/login" className="btn">Login</Link>
-          )}
-        </nav>
-      </header>
-
-      <Routes>
-        <Route path="/login" element={<LoginPage onLogin={() => setAuthed(true)} />} />
-        <Route path="/" element={authed ? <MoviesPage /> : <Navigate to="/login" replace />} />
-      </Routes>
-    </div>
-  )
+    <>
+      <Header theme={theme} setTheme={setTheme} />
+      <MoviesPage />
+    </>
+  );
 }
