@@ -18,41 +18,37 @@ export default function MoviesPage() {
     setError(null);
 
     async function loadAllCollections() {
-      try {
-        const results = await Promise.allSettled(
-          POPULAR_COLLECTIONS.map((c) => fetchCollection(c.id))
-        );
 
-        const parts = [];
-        for (const r of results) {
-          if (r.status === "fulfilled" && r.value && Array.isArray(r.value.parts)) {
-            parts.push(...r.value.parts);
-          }
-        }
 
-        const map = new Map();
-        for (const m of parts) {
-          if (!m || typeof m.id === "undefined") continue;
-          if (!map.has(m.id)) map.set(m.id, m);
-        }
-        let merged = Array.from(map.values());
+  try {
+    const results = await Promise.allSettled(
+      POPULAR_COLLECTIONS.map((c) => {
+        return fetchCollection(c.id);
+      })
+    );
 
-        merged.sort((a, b) => {
-          const da = a.release_date || "";
-          const db = b.release_date || "";
-          return db.localeCompare(da);
-        });
+    const allParts = [];
 
-        if (!cancelled) {
-          setAllMovies(merged);
-          setMovies(merged); 
-        }
-      } catch (err) {
-        if (!cancelled) setError(err.message || "Failed to load collections");
-      } finally {
-        if (!cancelled) setLoading(false);
+    results.forEach((res, i) => {
+      if (res.status === "fulfilled") {
+        allParts.push(...(res.value.parts || []));
+      } else {
+        console.log("Reason:", res.reason);
       }
-    }
+    });
+
+    
+
+    setMovies(allParts);
+setAllMovies(allParts);
+setLoading(false); 
+
+
+  } catch (err) {
+    console.log("❌ GLOBAL ERROR:", err);
+  }
+}
+
 
     loadAllCollections();
 
